@@ -18,5 +18,23 @@ EOT
     medtech_service_id                   = string
     name                                 = string
   }))
+  # --- Unconfirmed validation candidates, derived from azurerm_healthcare_medtech_service_fhir_destination's provider source ---
+  # Not auto-enabled: either a bespoke provider validator we can't safely translate,
+  # or a path that crosses a list-typed block (needs its own for_each wrapping).
+  # Review, translate into a real validation{} block above, and delete once confirmed.
+  # path: name
+  #   source:    validate.MedTechServiceName: no recognizable `if ... { errors = append(...) }` pattern - read it by hand
+  # path: medtech_service_id
+  #   source:    [from iotconnectors.ValidateIotConnectorID] !ok
+  # path: medtech_service_id
+  #   source:    [from iotconnectors.ValidateIotConnectorID] err != nil
+  # path: location
+  #   source:    location.EnhancedValidate: no recognizable `if ... { errors = append(...) }` pattern - read it by hand
+  # path: destination_fhir_service_id
+  #   source:    [from fhirservices.ValidateFhirServiceID] !ok
+  # path: destination_fhir_service_id
+  #   source:    [from fhirservices.ValidateFhirServiceID] err != nil
+  # path: destination_identity_resolution_type
+  #   source:    validation.StringInSlice value list is not a literal []string - likely a generated PossibleValuesFor*() helper; resolve separately
 }
 
