@@ -1,3 +1,7 @@
+output "healthcare_medtech_service_fhir_destinations_id" {
+  description = "Map of id values across all healthcare_medtech_service_fhir_destinations, keyed the same as var.healthcare_medtech_service_fhir_destinations"
+  value       = { for k, v in azurerm_healthcare_medtech_service_fhir_destination.healthcare_medtech_service_fhir_destinations : k => v.id }
+}
 output "healthcare_medtech_service_fhir_destinations_destination_fhir_mapping_json" {
   description = "Map of destination_fhir_mapping_json values across all healthcare_medtech_service_fhir_destinations, keyed the same as var.healthcare_medtech_service_fhir_destinations"
   value       = { for k, v in azurerm_healthcare_medtech_service_fhir_destination.healthcare_medtech_service_fhir_destinations : k => v.destination_fhir_mapping_json }
